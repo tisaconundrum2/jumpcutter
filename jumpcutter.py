@@ -1,5 +1,6 @@
+#!/usr/bin/python3
 from contextlib import closing
-from PIL import Image
+import PIL
 import subprocess
 from audiotsm import phasevocoder
 from audiotsm.io.wav import WavReader, WavWriter
@@ -11,6 +12,7 @@ from shutil import copyfile, rmtree
 import os
 import argparse
 from pytube import YouTube
+import uuid
 
 def downloadFile(url):
     name = YouTube(url).streams.first().download()
@@ -87,7 +89,7 @@ if len(args.output_file) >= 1:
 else:
     OUTPUT_FILE = inputToOutputFilename(INPUT_FILE)
 
-TEMP_FOLDER = "TEMP"
+TEMP_FOLDER = str(uuid.uuid4())
 AUDIO_FADE_ENVELOPE_SIZE = 400 # smooth out transitiion's audio by quickly fading in/out (arbitrary magic number whatever)
     
 createPath(TEMP_FOLDER)

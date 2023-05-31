@@ -98,3 +98,5 @@ ENV/
 out
 gen
 pyvenv.cfg
+*.mp4
+*.txt
